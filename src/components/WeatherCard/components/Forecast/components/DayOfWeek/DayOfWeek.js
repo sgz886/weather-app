@@ -3,9 +3,9 @@ import Temperature from "../../../../../Temperature";
 
 const DayOfWeek = ({name, weather, temperature}) => {
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div>{name}</div>
-      <WeatherIcon weather={weather.name} code={weather.code} className=""/>
+    <div className="flex flex-col justify-between items-center gap-5">
+      <div className='text-xl'>{name}</div>
+      <WeatherIcon weather={weather.name} code={`${weather.code}@2x`} className=""/>
       <Temperature className="text-xl" value={temperature}/>
     </div>
   );

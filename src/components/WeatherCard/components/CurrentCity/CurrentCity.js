@@ -5,16 +5,27 @@ import Name from "./components/Name";
 import BackgroundImage from "../../../BackgroundImage";
 import bg from "./assets/bg-current-city.jpg";
 
-const CurrentCity = () => {
+const CurrentCity = ({ current, isLoading }) => {
+  const {
+    humidity,
+    wind_speed: wind,
+    temp: temperature,
+    weather: {
+      0: { main: weather } = {}
+    } = {}
+  } = current;
+
   return (
     <BackgroundImage image={bg}>
       <div className="flex justify-between py-16 px-24 gap-48">
         <div>
           <Temperature
             className="text-white text-7xl text-center"
-            value="17.9" />
-          <Weather value="Clouds"/>
-          <Meta />
+            value={temperature}
+            isLoading={isLoading}
+          />
+          <Weather weather={weather} isLoading={isLoading} />
+          <Meta humidity={humidity} wind={wind} isLoading={isLoading} />
         </div>
         <Name>Melbourne</Name>
       </div>
