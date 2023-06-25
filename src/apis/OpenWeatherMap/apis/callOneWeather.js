@@ -7,23 +7,13 @@ const CITIES = [
   { name: "Brisbane", id: 2174003 },
   { name: "Perth", id: 2063523 },
 ];
-// const callOneWeather = (api) => {
-//   const OPEN_WEATHER_API = `${BASE_URL}/${api}?lat=${MELBOURNE_GEO.lat}&lon=${MELBOURNE_GEO.lon}&appid=${appId}&units=${unit}`;
-//   return fetch(OPEN_WEATHER_API).then((response) => response.json());
-// };
-const callOneWeather = (api) =>
+
+const callOneWeather = (api,params) =>
   OpenWeatherMap.get(`/${api}`,{
-    params:{
-      lat: MELBOURNE_GEO.lat,
-      lon: MELBOURNE_GEO.lon
-    }
+    params:params
   })
   .then((response) => response.data);
 
-// export const callGroupWeather = (api) => {
-//   const OPEN_WEATHER_API = `${BASE_URL}/${api}?id=${CITIES.map(({id})=>id).join()}&appid=${appId}&units=${unit}`;
-//   return fetch(OPEN_WEATHER_API).then((response) => response.json());
-// }
 export const callGroupWeather = (api) =>
   OpenWeatherMap.get(`/${api}`, {
     params: {

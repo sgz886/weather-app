@@ -21,22 +21,26 @@ const OTHER_CITIES = [
   },
 ];
 
-const OtherCities = () => {
+const OtherCities = ({ onCityClick }) => {
   const [others, setOthers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     callGroupWeather("group")
-      .then((data) => {
-        console.log("data = ", data);
-        const map = data.list.map(({ name, main: { temp }, weather }) => ({
-          name: name,
-          temperature: Number.parseInt(temp),
-          weather: {
-            name: weather[0].main,
-            code: weather[0].icon,
-          },
-        }));
+      .then(({ list }) => {
+        const map = list.map(
+          ({ name, main: { temp }, coord: { lon, lat }, weather }) => ({
+            name: name,
+            lon: lon,
+            lat: lat,
+            temperature: Number.parseInt(temp),
+            weather: {
+              name: weather[0].main,
+              code: weather[0].icon,
+            },
+          })
+        );
         setOthers(map);
       })
       .finally(() => setIsLoading(false));
@@ -45,10 +49,11 @@ const OtherCities = () => {
   return (
     <SubSection title="Other Cities">
       {isLoading && <div>loading</div>}
-      {others.map(({ name, temperature, weather }) => (
+      {others.map(({ name, temperature, weather, lon, lat }) => (
         <City
           key={name}
           name={name}
+          onClick={() => onCityClick({ name, lon, lat })}
           temperature={temperature}
           weather={weather}
         />

@@ -5,7 +5,7 @@ import Name from "./components/Name";
 import BackgroundImage from "../../../BackgroundImage";
 import bg from "./assets/bg-current-city.jpg";
 
-const CurrentCity = ({ current, isLoading }) => {
+const CurrentCity = ({ name, current, isLoading }) => {
   const {
     humidity,
     wind_speed: wind,
@@ -27,7 +27,7 @@ const CurrentCity = ({ current, isLoading }) => {
           <Weather weather={weather} isLoading={isLoading} />
           <Meta humidity={humidity} wind={wind} isLoading={isLoading} />
         </div>
-        <Name>Melbourne</Name>
+        <Name>{name}</Name>
       </div>
       <div className="bg-black/20 h-5" />
     </BackgroundImage>
