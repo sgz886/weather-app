@@ -41,30 +41,28 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- App           [渲染APP样式: 背景图片、WeatherCard的布局]
+  - WeatherCard   [渲染WeatherCard样式: 细节, 布局]
+    - CurrentCity   [渲染CurrentCity样式: 背景图片, 布局]
+      - Temperature   [渲染Temperature样式: 细节]
+      - Weather     [渲染Weather样式: 细节]
+      - Meta        [渲染Meta样式: 布局]
+        - Item *2    [渲染Humidity和Wind样式: 细节]
+      - CityName1    [渲染CityName样式: 细节]
+    - OtherCities   [渲染OtherCities样式: 布局, 统筹所有cities]
+      - City[]        [渲染City样式: 布局]
+        - CityName2      [渲染Name样式: 细节]
+        - Temperature    [渲染Temperature样式: 细节]
+        - WeatherIcon    [渲染WeatherIcon样式: 细节]
+    - Forecast   [渲染Forecast样式: 布局, 统筹所有Day]
+      - DayOfWeek[]    [渲染DayOfWeek样式: 布局]
+        -               []
+        - WeatherIcon   [渲染WeatherIcon样式: 细节]
+        - Temperature   [渲染Temperature样式: 细节]
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+如果责任有重复, 就可以做成通用组件
+- Temperature
+- WeatherIcon
+- Name
+- Subsection (Title + Content)
+- BackgroundImage

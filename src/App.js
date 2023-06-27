@@ -1,12 +1,15 @@
 import './App.css';
-import CurrentCity from './components/CurrentCity';
+import WeatherCard from './components/WeatherCard';
+import BackgroundImage from './components/BackgroundImage';
+import backgroundUrl from './assets/app-bg.jpg';
 
 function App() {
   return (
-    <div>
-      <header>App</header>
-      <CurrentCity />
-    </div>
+    <BackgroundImage url={backgroundUrl}>
+      <div className="h-screen flex justify-center">
+        <WeatherCard />
+      </div>
+    </BackgroundImage>
   );
 }
 

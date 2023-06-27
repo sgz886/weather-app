@@ -11,6 +11,9 @@
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         // suppress errors for missing 'import React' in files
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "comma-dangle": ["error", "only-multiline"],
+        "no-restricted-exports": "off",
+        "react/prop-types": "off"
     }
 }
