@@ -1,36 +1,63 @@
 import OpenWeatherMap from '../openWeatherMap';
 
 /*
-  OneCall API:
-  param:
-    lat
-    lon
-    units
-  api return:
-    {
-      current: {
-        temp: number,               =>  temperature
-        humidity: number 2 digits,  =>  humidity
-        wind_speed: number float,   =>  wind
-        weather: [{
-          main: weather name,       =>  weather
-        }]
-      }
-      daily: [
-        {
-          dt: number        =>  Day
-          temp: {
-            day:            =>  temperature
-          }
-          weather: {
-            main:           =>  ?
-            icon:           =>  icon
-          }
-        }
-      ]
-
+OneCall API: /onecall
+param:
+  appid
+  units
+  lat
+  lon
+api return:
+  {
+    current: {
+      temp: number,               =>  temperature
+      humidity: number 2 digits,  =>  humidity
+      wind_speed: number float,   =>  wind
+      weather: [{
+        main:             ,       =>  weather
+      }]
     }
+    daily: [
+      {
+        dt: number        =>  Day
+        temp: {
+          day:            =>  dayTemperature
+        }
+        weather: {
+          main:           =>  dayWeather
+          icon:           =>  icon
+        }
+      }
+    ]
+
+  }
 */
+/*
+Dummy return data for test
+const currentWeather = {
+  temperature: 100,
+  humidity: 0,
+  wind: 0,
+  weather: 'Tornado',
+  cityName: 'Melbourne',
+}
+const forecast = [
+  {
+    day: 'Mon',
+    temperature: 100,
+    weather: Tornado,
+    icon: '10d',
+  },
+  {
+    day: 'Mon',
+    temperature: 100,
+    weather: Tornado,
+    icon: '10d',
+  },
+]
+*/
+
+const WEEK_DAYS = ['Sun', 'Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const onecall = (url, params) => OpenWeatherMap.get(url, {
   params
@@ -39,32 +66,7 @@ const onecall = (url, params) => OpenWeatherMap.get(url, {
 
 export default onecall;
 
-const WEEK_DAYS = ['Sun', 'Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-export const CITIES = [
-  {
-    name: 'Melbourne',
-    lat: -37.8142176,
-    lon: 144.9631608,
-  },
-  {
-    name: 'Sydney',
-    lat: -33.8698439,
-    lon: 151.2082848,
-  },
-  {
-    name: 'Brisbane',
-    lat: -27.4689682,
-    lon: 153.0234991,
-  },
-  {
-    name: 'Perth',
-    lat: -31.9558964,
-    lon: 115.8605801,
-  },
-];
-
-export function parseOpenWeatherMap(data, cityName, setCurrent, setForecast) {
+export function parseCurrentWeatherAndForecast(data, cityName, setCurrent, setForecast) {
   const {
     current: {
       temp: temperature,

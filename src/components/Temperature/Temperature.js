@@ -1,9 +1,13 @@
-import DegreeCelsius from './components/DegreeCelsius/DegreeCelsius';
-
-export default function Temperature({ className, children }) {
+export default function Temperature({
+  className,
+  children,
+  isLoading,
+}) {
   return (
     <div className={className}>
-      <DegreeCelsius>{children}</DegreeCelsius>
+      {isLoading
+        ? '...'
+        : `${children}°`}
     </div>
   );
 }

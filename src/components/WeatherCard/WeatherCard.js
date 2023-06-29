@@ -3,31 +3,29 @@ import CurrentCity from './components/CurrentCity';
 import OtherCities from './components/OtherCities';
 import Forecast from './components/Forecast';
 import onecall, {
-  CITIES, parseOpenWeatherMap,
+  parseCurrentWeatherAndForecast,
 } from '../../apis/OpenWeatherMap/apis/onecall';
-
-let cityNum = 0;
+import { CITIES } from './components/OtherCities/OtherCities';
 
 export default function WeatherCard() {
   const [current, setCurrent] = useState({});
+  const [city, setCity] = useState(CITIES[0]);
   const [forecast, setForecast] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  async function callOpenWeatherAPI() {
-    if (cityNum === CITIES.length - 1) {
-      cityNum = 0;
-    } else {
-      cityNum += 1;
-    }
+  async function callCurrentWeatherAndForecast() {
     const data = await onecall('/onecall', {
-      lat: CITIES[cityNum].lat,
-      lon: CITIES[cityNum].lon,
+      lat: city.lat,
+      lon: city.lon,
     });
-    parseOpenWeatherMap(data, CITIES[cityNum].name, setCurrent, setForecast);
+    parseCurrentWeatherAndForecast(data, city.name, setCurrent, setForecast);
   }
 
   useEffect(() => {
-    callOpenWeatherAPI();
-  }, []);
+    setIsLoading(true);
+    callCurrentWeatherAndForecast()
+      .finally(() => setIsLoading(false));
+  }, [city]);
 
   return (
     <div className="
@@ -35,12 +33,19 @@ export default function WeatherCard() {
       min-w-[740px] min-h-[500px] my-auto overflow-hidden
     "
     >
-      <button type="button" onClick={callOpenWeatherAPI}>debug</button>
-      <CurrentCity current={current} />
+      <CurrentCity
+        current={current}
+        isLoading={isLoading}
+      />
       <div key="OtherCites and Forcast" className="flex h-[320px]">
-        <OtherCities />
+        <OtherCities
+          onClickCity={setCity}
+        />
         <div key="splitBar" className="my-9 w-[3px] bg-black/10" />
-        <Forecast forecast={forecast} />
+        <Forecast
+          forecast={forecast}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

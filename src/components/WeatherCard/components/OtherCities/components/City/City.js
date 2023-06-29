@@ -4,13 +4,17 @@ import WeatherIcon from '../../../../../WeatherIcon';
 
 export default function City({
   name,
+  lat,
+  lon,
   temperature,
   icon,
   weather,
+  onClick,
 }) {
   return (
     <button
       type="button"
+      onClick={onClick}
       className="
         flex justify-between items-center gap-1
         text-left w-full
