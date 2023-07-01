@@ -8,10 +8,10 @@ import backgroundUrl from './assets/bg-current-city.jpg';
 export default function CurrentCity({ current, isLoading }) {
   return (
     <BackgroundImage url={backgroundUrl}>
-      <div className="flex justify-between py-16 px-24 gap-24">
+      <div className="">
         <div>
           <Temperature
-            className="text-white text-7xl text-center"
+            className=""
             isLoading={isLoading}
           >
             {current?.temperature}
@@ -29,7 +29,7 @@ export default function CurrentCity({ current, isLoading }) {
         </div>
         <CityName>{current?.cityName}</CityName>
       </div>
-      <div className="bg-black/20 h-5" key="horizontalBar" />
+      <div className="" />
     </BackgroundImage>
   );
 }

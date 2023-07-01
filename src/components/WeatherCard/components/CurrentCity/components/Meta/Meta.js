@@ -6,13 +6,13 @@ export default function Meta({
   isLoading
 }) {
   return (
-    <div className="mt-8 flex gap-8 justify-end">
+    <div className="">
       <Item title="HUMIDITY">
         {isLoading
           ? 'loading'
           : `${humidity} %`}
       </Item>
-      <div key="splitBar" className="w-[2px] bg-white/70" />
+      <div key="splitBar" className="" />
       <Item title="WIND">
         {isLoading
           ? 'loading'

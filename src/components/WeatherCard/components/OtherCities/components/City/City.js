@@ -15,16 +15,10 @@ export default function City({
     <button
       type="button"
       onClick={onClick}
-      className="
-        flex justify-between items-center gap-1
-        text-left w-full
-        relative
-        before:content-[''] before:w-[4px] before:h-[12px] before:absolute before:left-[-8px]
-        hover:before:bg-black/40
-      "
+      className=""
     >
       <CityName>{name}</CityName>
-      <Temperature className="text-xl">{temperature}</Temperature>
+      <Temperature className="">{temperature}</Temperature>
       <WeatherIcon weather={weather}>{icon}</WeatherIcon>
     </button>
   );

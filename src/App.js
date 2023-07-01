@@ -6,7 +6,7 @@ import backgroundUrl from './assets/app-bg.jpg';
 function App() {
   return (
     <BackgroundImage url={backgroundUrl}>
-      <div className="h-screen flex justify-center">
+      <div className="">
         <WeatherCard />
       </div>
     </BackgroundImage>

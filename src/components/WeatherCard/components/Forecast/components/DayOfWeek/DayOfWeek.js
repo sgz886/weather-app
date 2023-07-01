@@ -5,10 +5,10 @@ export default function DayOfWeek({
   day, weather, temperature, icon
 }) {
   return (
-    <div className="flex flex-col justify-between items-center gap-5">
-      <div key="Day" className="text-xl">{day}</div>
+    <div className="">
+      <div key="Day" className="">{day}</div>
       <WeatherIcon weather={weather}>{`${icon}@2x`}</WeatherIcon>
-      <Temperature className="text-xl">{temperature}</Temperature>
+      <Temperature className="">{temperature}</Temperature>
     </div>
   );
 }

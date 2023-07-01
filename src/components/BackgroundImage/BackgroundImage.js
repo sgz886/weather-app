@@ -4,7 +4,7 @@ export default function BackgroundImage({
 }) {
   return (
     <div
-      className="bg-center bg-cover"
+      className=""
       style={{ backgroundImage: `url(${url})` }}
     >
       {children}
