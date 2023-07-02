@@ -47,34 +47,37 @@ export default function OtherCities({ onClickCity }) {
     callGroupWeather()
       .finally(() => setIsLoading(false));
   }, []);
-  // todo: 给多少宽度合适呢? 之前是w-80
   return (
     <SubSection
-      sectionClass="w-[240px]"
+      sectionClass="w-[240px] flex flex-col
+        max-[800px]:h-[280px] max-[800px]:w-full max-[800px]:px-7 max-[800px]:pt-5"
       title="Other Cites"
-      itemClass="flex flex-col justify-between"
     >
       {isLoading ? (
-        <div>loading</div>
-      ) : (otherCitiesWeather.map(({
-        cityName: name,
-        lat,
-        lon,
-        temperature,
-        icon,
-        weather,
-      }) => (
-        <CityRow
-          key={name}
-          name={name}
-          lat={lat}
-          lon={lon}
-          temperature={temperature}
-          icon={icon}
-          weather={weather}
-          onClick={() => onClickCity({ name, lat, lon })}
-        />
-      )))}
+        <div className="grow flex justify-center items-center">Loading</div>
+      ) : (
+        <div className="flex flex-col justify-around">
+          {otherCitiesWeather.map(({
+            cityName: name,
+            lat,
+            lon,
+            temperature,
+            icon,
+            weather,
+          }) => (
+            <CityRow
+              key={name}
+              name={name}
+              lat={lat}
+              lon={lon}
+              temperature={temperature}
+              icon={icon}
+              weather={weather}
+              onClick={() => onClickCity({ name, lat, lon })}
+            />
+          ))}
+        </div>
+      )}
     </SubSection>
   );
 }

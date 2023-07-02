@@ -70,10 +70,15 @@ Responsive
 
   ~900px:调整WeatherCard左右边距 w-[90%]
 ~800px
+整个Card width 850px->352px
+整个Card height 不变   h-[...px]
+CurrentCity变为上下flex flex-col-reverse
 调整OtherCities和Forecast为竖向 flex-col-reverse
-整个Card height 650px->870px   h-[880px]
-  ~700px :调整CurrentCity左右排版 px-0 justify-evenly
-          让Meta里的内容更接近  justify-evenly
+Forecast title变小, DayOfWeek缩小一点
+OtherCities编程一个标题 'View more Cites...'
+
+~~调整CurrentCity左右排版更接近 px-0 justify-evenly  max-[700px]:px-0  max-[700px]:justify-evenly
+          让Meta里的内容更接近  justify-evenly~~
 
 ~520px
 调整CurrentCity左右排版为上下排版

@@ -11,21 +11,24 @@ export default function CurrentCity({
 }) {
   return (
     <BackgroundImage url={backgroundUrl}>
-      <div className="h-[360px]">
+      <div className="flex flex-col h-[360px] max-[800px]:h-[320px]">
         <div
           className="
-            px-20 py-16 h-[calc(100%-1.5rem)]
+            px-20 py-16 grow
             flex justify-between
             text-light-primary
-            max-[700px]:px-0
-            max-[700px]:justify-evenly
+            max-[800px]:py-8
+            max-[800px]:flex-col-reverse max-[800px]:items-center
             "
         >
           <div
-            className="flex flex-col justify-between items-center w-60"
+            className="flex flex-col justify-between items-center w-60
+                       max-[800px]:h-44 max-[800px]:w-60"
           >
             <Temperature
-              className="text-7xl grow"
+              className="
+              text-7xl grow max-[800px]:text-5xl
+              "
               isLoading={isLoading}
             >
               {current?.temperature}
@@ -43,7 +46,7 @@ export default function CurrentCity({
           </div>
           <CityName>{current?.cityName}</CityName>
         </div>
-        <div className="h-6 bg-black/70" />
+        <div key="splitBar" className="h-6 bg-black/70 max-[800px]:h-3" />
       </div>
     </BackgroundImage>
   );

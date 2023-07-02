@@ -6,11 +6,7 @@ export default function Meta({
   isLoading
 }) {
   return (
-    <div className="
-      w-full flex justify-between text-light-secondary
-      max-[700px]:justify-evenly
-    "
-    >
+    <div className="w-full flex text-light-secondary">
       <Item title="HUMIDITY">
         {isLoading
           ? 'loading'

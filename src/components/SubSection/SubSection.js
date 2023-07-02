@@ -3,7 +3,6 @@ export default function SubSection({
   title,
   titleClass,
   children,
-  itemClass,
 }) {
   return (
     <div className={sectionClass}>
@@ -12,7 +11,7 @@ export default function SubSection({
       >
         {title}
       </div>
-      <div className={itemClass}>{children}</div>
+      {children}
     </div>
   );
 }

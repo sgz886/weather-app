@@ -18,7 +18,7 @@ export default function CityRow({
       className="flex justify-between items-center"
     >
       <CityName>{name}</CityName>
-      <Temperature className="text-lg">{temperature}</Temperature>
+      <Temperature className="text-lg translate-x-2">{temperature}</Temperature>
       <WeatherIcon weather={weather}>{icon}</WeatherIcon>
     </button>
   );

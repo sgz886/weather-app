@@ -32,7 +32,7 @@ export default function WeatherCard() {
       my-auto rounded-3xl
       w-[850px] h-[650px]  bg-white overflow-hidden
       max-[900px]:w-[90%]
-      max-[800px]:h-[880px]
+      max-[800px]:w-[352px] max-[800px]:h-auto
     "
     >
       <CurrentCity
@@ -42,14 +42,17 @@ export default function WeatherCard() {
       <div
         key="OtherCites and Forcast"
         className="
-          py-6 h-[calc(100%-360px)] flex justify-evenly
-          max-[800px]:flex-col-reverse
+          py-6 flex justify-evenly
+          max-[800px]:flex-col-reverse max-[800px]:py-0
           "
       >
         <OtherCities
           onClickCity={setCity}
         />
-        <div key="splitBar" className="w-[2px] h-full bg-black/20" />
+        <div
+          key="splitBar"
+          className="w-0.5 h-60 bg-black/20 max-[800px]:w-auto max-[800px]:h-[1px]"
+        />
         <Forecast
           forecast={forecast}
           isLoading={isLoading}
