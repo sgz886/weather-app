@@ -1,8 +1,18 @@
-export default function SubSection({ title, children }) {
+export default function SubSection({
+  sectionClass,
+  title,
+  titleClass,
+  children,
+  itemClass,
+}) {
   return (
-    <div className="">
-      <div className="">{title}</div>
-      <div className="">{children}</div>
+    <div className={sectionClass}>
+      <div
+        className={`text-2xl font-light tracking-widest mb-2 ${titleClass}`}
+      >
+        {title}
+      </div>
+      <div className={itemClass}>{children}</div>
     </div>
   );
 }

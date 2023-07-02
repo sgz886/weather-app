@@ -1,14 +1,22 @@
 import SubSection from '../../../SubSection';
 import DayOfWeek from './components/DayOfWeek';
 
-export default function Forecast({ forecast, isLoading }) {
+export default function Forecast({
+  forecast,
+  isLoading,
+}) {
   return (
-    <SubSection title="Forecast">
+    <SubSection
+      sectionClass="w-[450px]"
+      title="Forecast"
+      titleClass="ml-4"
+      itemClass="flex justify-between"
+    >
       {isLoading ? (
         <div>Loading</div>
       ) : (
-        <div className="">
-          {forecast.map(({
+        forecast
+          .map(({
             day,
             weather,
             temperature,
@@ -21,9 +29,7 @@ export default function Forecast({ forecast, isLoading }) {
               weather={weather}
               icon={icon}
             />
-          ))}
-        </div>
-      )}
+          )))}
     </SubSection>
   );
 }

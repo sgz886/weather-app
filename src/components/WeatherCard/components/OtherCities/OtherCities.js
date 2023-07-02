@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import SubSection from '../../../SubSection';
-import City from './components/City';
+import CityRow from './components/City';
 import groupCall, {
   parseGroupWeather,
 } from '../../../../apis/OpenWeatherMap/apis/groupCall';
@@ -47,9 +47,13 @@ export default function OtherCities({ onClickCity }) {
     callGroupWeather()
       .finally(() => setIsLoading(false));
   }, []);
-
+  // todo: 给多少宽度合适呢? 之前是w-80
   return (
-    <SubSection title="Other Cites">
+    <SubSection
+      sectionClass="w-[240px]"
+      title="Other Cites"
+      itemClass="flex flex-col justify-between"
+    >
       {isLoading ? (
         <div>loading</div>
       ) : (otherCitiesWeather.map(({
@@ -60,7 +64,7 @@ export default function OtherCities({ onClickCity }) {
         icon,
         weather,
       }) => (
-        <City
+        <CityRow
           key={name}
           name={name}
           lat={lat}

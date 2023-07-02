@@ -69,7 +69,7 @@ export const parseGroupWeather = (data, setOtherCitiesWeather) => {
 };
 
 const groupCall = (url, params) => OpenWeatherMap.get(
-  '/group',
+  url,
   { params },
 )
   .then(

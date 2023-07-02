@@ -48,10 +48,10 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
       - Weather     [渲染Weather样式: 细节]
       - Meta        [渲染Meta样式: 布局]
         - Item *2    [渲染Humidity和Wind样式: 细节]
-      - CityName1    [渲染CityName样式: 细节]
+      - CityName(1)    [渲染CityName样式: 细节]
     - OtherCities   [渲染OtherCities样式: 布局, 统筹所有cities]
-      - City[]        [渲染City样式: 布局]
-        - CityName2      [渲染Name样式: 细节]
+      - CityRow[]        [渲染CityRow样式: 布局]
+        - CityName(2)      [渲染Name样式: 细节]
         - Temperature    [渲染Temperature样式: 细节]
         - WeatherIcon    [渲染WeatherIcon样式: 细节]
     - Forecast   [渲染Forecast样式: 布局, 统筹所有Day]
@@ -63,6 +63,17 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 如果责任有重复, 就可以做成通用组件
 - Temperature
 - WeatherIcon
-- Name
 - Subsection (Title + Content)
 - BackgroundImage
+
+Responsive
+
+  ~900px:调整WeatherCard左右边距 w-[90%]
+~800px
+调整OtherCities和Forecast为竖向 flex-col-reverse
+整个Card height 650px->870px   h-[880px]
+  ~700px :调整CurrentCity左右排版 px-0 justify-evenly
+          让Meta里的内容更接近  justify-evenly
+
+~520px
+调整CurrentCity左右排版为上下排版

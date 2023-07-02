@@ -2,7 +2,7 @@ import CityName from './components/CityName';
 import Temperature from '../../../../../Temperature';
 import WeatherIcon from '../../../../../WeatherIcon';
 
-export default function City({
+export default function CityRow({
   name,
   lat,
   lon,
@@ -15,10 +15,10 @@ export default function City({
     <button
       type="button"
       onClick={onClick}
-      className=""
+      className="flex justify-between items-center"
     >
       <CityName>{name}</CityName>
-      <Temperature className="">{temperature}</Temperature>
+      <Temperature className="text-lg">{temperature}</Temperature>
       <WeatherIcon weather={weather}>{icon}</WeatherIcon>
     </button>
   );

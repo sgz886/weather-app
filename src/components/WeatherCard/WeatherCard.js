@@ -28,16 +28,28 @@ export default function WeatherCard() {
   }, [city]);
 
   return (
-    <div className="">
+    <div className="
+      my-auto rounded-3xl
+      w-[850px] h-[650px]  bg-white overflow-hidden
+      max-[900px]:w-[90%]
+      max-[800px]:h-[880px]
+    "
+    >
       <CurrentCity
         current={current}
         isLoading={isLoading}
       />
-      <div key="OtherCites and Forcast" className="">
+      <div
+        key="OtherCites and Forcast"
+        className="
+          py-6 h-[calc(100%-360px)] flex justify-evenly
+          max-[800px]:flex-col-reverse
+          "
+      >
         <OtherCities
           onClickCity={setCity}
         />
-        <div key="splitBar" className="" />
+        <div key="splitBar" className="w-[2px] h-full bg-black/20" />
         <Forecast
           forecast={forecast}
           isLoading={isLoading}

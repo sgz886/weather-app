@@ -59,9 +59,7 @@ const forecast = [
 
 const WEEK_DAYS = ['Sun', 'Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const onecall = (url, params) => OpenWeatherMap.get(url, {
-  params
-})
+const onecall = (url, params) => OpenWeatherMap.get(url, { params })
   .then((response) => response.data);
 
 export default onecall;
