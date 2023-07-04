@@ -1,54 +1,63 @@
-import CurrentCity from "./components/CurrentCity";
-import OtherCities from "./components/OtherCities";
-import Forecast from "./components/Forecast";
-import { useEffect, useState } from "react";
-import callOneWeather from "../../apis/OpenWeatherMap/apis/callOneWeather";
+import { useEffect, useState } from 'react';
+import CurrentCity from './components/CurrentCity';
+import OtherCities from './components/OtherCities';
+import Forecast from './components/Forecast';
+import onecall, {
+  parseCurrentWeatherAndForecast,
+} from '../../apis/OpenWeatherMap/apis/onecall';
+import { CITIES } from './components/OtherCities/OtherCities';
 
-const CITIES = [
-  { name: "Melbourne", lat: -37.8142176, lon: 144.9631608 },
-  { name: "Sydney", lat: -33.8698439, lon: 151.2082848 },
-  { name: "Brisbane", lat: -27.4689682, lon: 153.0234991 },
-  { name: "Perth", lat: -31.9558964, lon: 115.8605801 },
-];
-const WEEK_DAYS = ["Sun", "Mon", "Tus", "Wed", "Thu", "Fri", "Sat"];
-
-const WeatherCard = () => {
-  const [city, setCity] = useState(CITIES[0]);
+export default function WeatherCard() {
   const [current, setCurrent] = useState({});
+  const [city, setCity] = useState(CITIES[0]);
   const [forecast, setForecast] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  async function callCurrentWeatherAndForecast() {
+    const data = await onecall('/onecall', {
+      lat: city.lat,
+      lon: city.lon,
+    });
+    parseCurrentWeatherAndForecast(data, city.name, setCurrent, setForecast);
+  }
+
   useEffect(() => {
     setIsLoading(true);
-    callOneWeather("onecall", { lon: city.lon, lat: city.lat })
-      .then(({ current, daily: forecast }) => {
-        setCurrent(current);
-        const forecastOfFiveDays = forecast
-          ?.slice(1, 6)
-          .map(({ dt: timestamp, weather: { 0: weather }, temp }) => ({
-            name: WEEK_DAYS[new Date(timestamp * 1000).getDay()],
-            weather: {
-              code: weather.icon,
-              name: weather.main,
-            },
-            temperature: Number.parseInt(temp.day),
-          }));
-        setForecast(forecastOfFiveDays);
-      })
+    callCurrentWeatherAndForecast()
       .finally(() => setIsLoading(false));
   }, [city]);
 
   return (
-    <div className="bg-white rounded-3xl shadow-2xl shadow-black/50 overflow-hidden">
-      <CurrentCity name={city.name} current={current} isLoading={isLoading} />
-      <div className="flex h-[320px] w-[956px]">
-        <OtherCities onCityClick={(newCity) => setCity(newCity)} />
-        <div className="my-9 w-[3px] bg-black/10"></div>
-        <div className="flex-1">
-          <Forecast forecast={forecast} isLoading={isLoading} />
-        </div>
+    <div className="
+      my-auto rounded-3xl
+      w-[850px] h-[650px]  bg-white overflow-hidden
+      max-[900px]:w-[90%]
+      max-[800px]:w-[352px] max-[800px]:h-auto
+    "
+    >
+      <CurrentCity
+        current={current}
+        isLoading={isLoading}
+      />
+      <div
+        key="OtherCites and Forcast"
+        className="
+          py-6 flex justify-evenly
+          max-[800px]:flex-col-reverse max-[800px]:py-0
+          "
+      >
+        <OtherCities
+          onClickCity={setCity}
+        />
+        <div
+          key="splitBar"
+          className="w-0.5 h-60 bg-black/20 max-[800px]:w-auto max-[800px]:h-[1px]"
+        />
+        <Forecast
+          forecast={forecast}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );
-};
-export default WeatherCard;
+}

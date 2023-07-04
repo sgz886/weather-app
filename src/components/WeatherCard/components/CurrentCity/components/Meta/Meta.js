@@ -1,17 +1,23 @@
-import Item from "./components/Item";
+import Item from './components/Item';
 
-const Meta = ({humidity, wind, isLoading}) => {
-
+export default function Meta({
+  humidity,
+  wind,
+  isLoading
+}) {
   return (
-    <div className="flex gap-8 justify-end mt-8">
+    <div className="w-full flex text-light-secondary">
       <Item title="HUMIDITY">
-        {isLoading?'loading':`${humidity} %`}
+        {isLoading
+          ? 'loading'
+          : `${humidity} %`}
       </Item>
-      <div className="w-[2px] bg-white/70"></div>
+      <div key="splitBar" className="w-[2px] h-full bg-light-secondary" />
       <Item title="WIND">
-        {isLoading?'loading':`${wind} KM/H`}
+        {isLoading
+          ? 'loading'
+          : `${wind} KM/H`}
       </Item>
     </div>
   );
-};
-export default Meta;
+}

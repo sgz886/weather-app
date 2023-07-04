@@ -1,64 +1,83 @@
-import City from "./components/City";
-import SubSection from "../../../SubSection";
-import { useEffect, useState } from "react";
-import { callGroupWeather } from "../../../../apis/OpenWeatherMap/apis/callOneWeather";
+import { useEffect, useState } from 'react';
+import SubSection from '../../../SubSection';
+import CityRow from './components/City';
+import groupCall, {
+  parseGroupWeather,
+} from '../../../../apis/OpenWeatherMap/apis/groupCall';
 
-const OTHER_CITIES = [
+export const CITIES = [
   {
-    name: "Sydney",
-    temperature: 14,
-    weather: { code: "04n", name: "Clouds" },
+    name: 'Melbourne',
+    id: 2158177,
+    lat: -37.8142176,
+    lon: 144.9631608,
   },
   {
-    name: "Brisbane",
-    temperature: 15,
-    weather: { code: "04n", name: "Clouds" },
+    name: 'Sydney',
+    id: 2147714,
+    lat: -33.8698439,
+    lon: 151.2082848,
   },
   {
-    name: "Perth",
-    temperature: 16,
-    weather: { code: "04n", name: "Clouds" },
+    name: 'Brisbane',
+    id: 2174003,
+    lat: -27.4689682,
+    lon: 153.0234991,
+  },
+  {
+    name: 'Perth',
+    id: 2063523,
+    lat: -31.9558964,
+    lon: 115.8605801,
   },
 ];
 
-const OtherCities = ({ onCityClick }) => {
-  const [others, setOthers] = useState([]);
+export default function OtherCities({ onClickCity }) {
+  const [otherCitiesWeather, setOtherCitiesWeather] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const callGroupWeather = async () => {
+    const data = await groupCall('/group', {
+      id: CITIES.map(({ id }) => id).join()
+    });
+    parseGroupWeather(data, setOtherCitiesWeather);
+  };
 
   useEffect(() => {
     setIsLoading(true);
-    callGroupWeather("group")
-      .then(({ list }) => {
-        const map = list.map(
-          ({ name, main: { temp }, coord: { lon, lat }, weather }) => ({
-            name: name,
-            lon: lon,
-            lat: lat,
-            temperature: Number.parseInt(temp),
-            weather: {
-              name: weather[0].main,
-              code: weather[0].icon,
-            },
-          })
-        );
-        setOthers(map);
-      })
+    callGroupWeather()
       .finally(() => setIsLoading(false));
   }, []);
-
   return (
-    <SubSection title="Other Cities">
-      {isLoading && <div>loading</div>}
-      {others.map(({ name, temperature, weather, lon, lat }) => (
-        <City
-          key={name}
-          name={name}
-          onClick={() => onCityClick({ name, lon, lat })}
-          temperature={temperature}
-          weather={weather}
-        />
-      ))}
+    <SubSection
+      sectionClass="w-[240px] flex flex-col
+        max-[800px]:h-[280px] max-[800px]:w-full max-[800px]:px-7 max-[800px]:pt-5"
+      title="Other Cites"
+    >
+      {isLoading ? (
+        <div className="grow flex justify-center items-center">Loading</div>
+      ) : (
+        <div className="flex flex-col justify-around">
+          {otherCitiesWeather.map(({
+            cityName: name,
+            lat,
+            lon,
+            temperature,
+            icon,
+            weather,
+          }) => (
+            <CityRow
+              key={name}
+              name={name}
+              lat={lat}
+              lon={lon}
+              temperature={temperature}
+              icon={icon}
+              weather={weather}
+              onClick={() => onClickCity({ name, lat, lon })}
+            />
+          ))}
+        </div>
+      )}
     </SubSection>
   );
-};
-export default OtherCities;
+}

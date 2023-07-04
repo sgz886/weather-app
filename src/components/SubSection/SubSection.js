@@ -1,10 +1,17 @@
-const SubSection = ({ title, children }) => {
+export default function SubSection({
+  sectionClass,
+  title,
+  titleClass,
+  children,
+}) {
   return (
-    <div className="px-12 py-9 h-full">
-      <div className="text-2xl font-light tracking-widest">{title}</div>
-      <div className="mt-4 h-auto">{children}</div>
+    <div className={sectionClass}>
+      <div
+        className={`text-2xl font-light tracking-widest mb-2 ${titleClass}`}
+      >
+        {title}
+      </div>
+      {children}
     </div>
   );
-};
-
-export default SubSection;
+}

@@ -1,13 +1,14 @@
-import WeatherIcon from "../../../../../WeatherIcon";
-import Temperature from "../../../../../Temperature";
+import WeatherIcon from '../../../../../WeatherIcon';
+import Temperature from '../../../../../Temperature';
 
-const DayOfWeek = ({name, weather, temperature}) => {
+export default function DayOfWeek({
+  day, weather, temperature, icon
+}) {
   return (
-    <div className="flex flex-col justify-between items-center gap-5">
-      <div className='text-xl'>{name}</div>
-      <WeatherIcon weather={weather.name} code={`${weather.code}@2x`} className=""/>
-      <Temperature className="text-xl" value={temperature}/>
+    <div className="flex flex-col justify-between items-center gap-4">
+      <div key="Day" className="mt-4 text-xl">{day}</div>
+      <WeatherIcon width="75px" weather={weather}>{`${icon}@2x`}</WeatherIcon>
+      <Temperature className="text-lg">{temperature}</Temperature>
     </div>
   );
-};
-export default DayOfWeek;
+}

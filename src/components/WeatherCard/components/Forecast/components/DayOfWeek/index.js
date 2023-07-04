@@ -1,1 +1,1 @@
-export { default } from './DayOfWeek'
+export { default } from './DayOfWeek';
