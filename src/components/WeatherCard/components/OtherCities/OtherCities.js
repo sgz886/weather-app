@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import SubSection from '../../../SubSection';
-import CityRow from './components/City';
+import CityRow from './components/CityRow';
 import groupCall, {
   parseGroupWeather,
 } from '../../../../apis/OpenWeatherMap/apis/groupCall';
