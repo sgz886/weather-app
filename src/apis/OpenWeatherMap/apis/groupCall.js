@@ -47,33 +47,33 @@ const OTHER_CITIES = [
 
 export const parseGroupWeather = (data, setOtherCitiesWeather) => {
   const { list } = data;
-  const otherCitesWeather = list.map(({
-    coord: { lat, lon },
-    weather: {
-      0: {
-        main: weather,
-        icon,
+  const otherCitesWeather = list.map(
+    ({
+      coord: {
+        lat,
+        lon,
       },
-    },
-    main: { temp: temperature },
-    name: cityName,
-  }) => ({
-    weather,
-    icon,
-    temperature: Number.parseInt(temperature, 10),
-    cityName,
-    lat,
-    lon,
-  }));
+      weather: {
+        0: {
+          main: weather,
+          icon,
+        },
+      },
+      main: { temp: temperature },
+      name: cityName,
+    }) => ({
+      weather,
+      icon,
+      temperature: Number.parseInt(temperature, 10),
+      cityName,
+      lat,
+      lon,
+    }),
+  );
   setOtherCitiesWeather(otherCitesWeather);
 };
 
-const groupCall = (url, params) => OpenWeatherMap.get(
-  url,
-  { params },
-)
-  .then(
-    (response) => response.data
-  );
+const groupCall = (url, params) => OpenWeatherMap.get(url, { params })
+  .then((response) => response.data);
 
 export default groupCall;

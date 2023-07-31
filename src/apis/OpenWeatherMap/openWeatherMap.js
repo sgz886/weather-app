@@ -9,6 +9,6 @@ const OpenWeatherMap = axios.create({
   params: {
     appId: APP_ID,
     units: UNITS,
-  }
+  },
 });
 export default OpenWeatherMap;

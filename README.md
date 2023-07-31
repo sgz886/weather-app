@@ -4,10 +4,10 @@
 
 This repo uses [npm](https://www.npmjs.com/) as a package manager, for a start, install the dependencies with
 
-`
-npm install
-`
+`npm install`
+
 ## 🧑‍💻 run app
+
 In the project directory, run:
 
 `npm start`
@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## 🥞 What techs are in this project?
 
 | Category           | Packages                                  |
-|--------------------|-------------------------------------------|
+| ------------------ | ----------------------------------------- |
 | Library            | `react`                                   |
 | BootStrapper       | `create-react-app`                        |
 | Scripting Language | `javacript`                               |
@@ -26,6 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 | Code Control       | `eslint`                                  |
 
 ## 💻📱 Preview
+
 - 💻 desktop mode
 
 ![desktop preview picture](/public/preview/img_desktop.png)

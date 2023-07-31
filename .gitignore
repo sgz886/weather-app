@@ -3,6 +3,7 @@
 dist
 
 structure.xmind
+src/test.jsx
 # dependencies
 /node_modules
 /.pnp

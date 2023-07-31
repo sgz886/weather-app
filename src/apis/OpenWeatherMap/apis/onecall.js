@@ -64,13 +64,20 @@ const onecall = (url, params) => OpenWeatherMap.get(url, { params })
 
 export default onecall;
 
-export function parseCurrentWeatherAndForecast(data, cityName, setCurrent, setForecast) {
+export function parseCurrentWeatherAndForecast(
+  data,
+  cityName,
+  setCurrent,
+  setForecast,
+) {
   const {
     current: {
       temp: temperature,
       humidity,
       wind_speed: wind,
-      weather: { 0: { main: weather } },
+      weather: {
+        0: { main: weather },
+      },
     },
   } = data;
   setCurrent({
@@ -82,22 +89,23 @@ export function parseCurrentWeatherAndForecast(data, cityName, setCurrent, setFo
   });
 
   const { daily } = data;
-  const forecastOfFiveDays = daily
-    .slice(0, 5)
-    .map(({
-      dt: timestamp,
-      temp: { day: dayTemperature },
-      weather: {
-        0: {
-          main: dayWeather,
-          icon,
+  const forecastOfFiveDays = daily.slice(0, 5)
+    .map(
+      ({
+        dt: timestamp,
+        temp: { day: dayTemperature },
+        weather: {
+          0: {
+            main: dayWeather,
+            icon,
+          },
         },
-      },
-    }) => ({
-      day: WEEK_DAYS[new Date(timestamp * 1000).getDay()],
-      temperature: Number.parseInt(dayTemperature, 10),
-      weather: dayWeather,
-      icon,
-    }));
+      }) => ({
+        day: WEEK_DAYS[new Date(timestamp * 1000).getDay()],
+        temperature: Number.parseInt(dayTemperature, 10),
+        weather: dayWeather,
+        icon,
+      }),
+    );
   setForecast(forecastOfFiveDays);
 }
