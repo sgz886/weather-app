@@ -68,7 +68,11 @@ export default function OtherCities({ onClickCity }) {
                 temperature={temperature}
                 icon={icon}
                 weather={weather}
-                onClick={() => onClickCity({ name, lat, lon })}
+                onClick={() => onClickCity({
+                  name,
+                  lat,
+                  lon,
+                })}
               />
             ),
           )}
