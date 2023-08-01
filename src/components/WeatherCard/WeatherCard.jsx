@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import CurrentCity from './components/CurrentCity';
 import OtherCities from './components/OtherCities';
 import Forecast from './components/Forecast';
@@ -7,45 +6,6 @@ import onecall, {
   parseCurrentWeatherAndForecast,
 } from '../../apis/OpenWeatherMap/apis/onecall';
 import { CITIES } from './components/OtherCities/OtherCities';
-
-const CardContainer = styled.div`
-  margin-top: auto;
-  margin-bottom: auto;
-  border-radius: 1.5rem /* 24px */;
-  width: 850px;
-  height: 650px;
-  background-color: white;
-  overflow: hidden;
-  @media (max-width: 900px) {
-    width: 90%;
-  }
-  @media (max-width: 800px) {
-    width: 352px;
-    height: auto;
-  }
-`;
-
-const Bottom = styled.div`
-  padding-top: 1.5rem /* 24px */;
-  padding-bottom: 1.5rem /* 24px */;
-  display: flex;
-  justify-content: space-evenly;
-  @media (max-width: 800px) {
-    flex-direction: column-reverse;
-    padding-left: 0;
-    padding-right: 0;
-  }
-`;
-
-const SplitBar = styled.div`
-  width: 0.125rem /* 2px */;
-  height: 15rem /* 240px */;
-  background-color: rgb(0 0 0 / 0.2);
-  @media (max-width: 800px) {
-    width: auto;
-    height: 1px;
-  }
-`;
 
 export default function WeatherCard() {
   const [current, setCurrent] = useState({});
@@ -67,13 +27,29 @@ export default function WeatherCard() {
   }, [city]);
 
   return (
-    <CardContainer>
+    <div
+      className='
+      my-auto rounded-3xl
+      w-[850px] h-[650px]  bg-white overflow-hidden
+      max-[900px]:w-[90%]
+      max-[800px]:w-[352px] max-[800px]:h-auto
+    '
+    >
       <CurrentCity current={current} isLoading={isLoading} />
-      <Bottom key='OtherCites and Forcast'>
+      <div
+        key='OtherCites and Forcast'
+        className='
+          py-6 flex justify-evenly
+          max-[800px]:flex-col-reverse max-[800px]:py-0
+          '
+      >
         <OtherCities onClickCity={setCity} />
-        <SplitBar key='splitBar' />
+        <div
+          key='splitBar'
+          className='w-0.5 h-60 bg-black/20 max-[800px]:w-auto max-[800px]:h-[1px]'
+        />
         <Forecast forecast={forecast} isLoading={isLoading} />
-      </Bottom>
-    </CardContainer>
+      </div>
+    </div>
   );
 }
