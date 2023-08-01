@@ -49,15 +49,9 @@ export const parseGroupWeather = (data, setOtherCitiesWeather) => {
   const { list } = data;
   const otherCitesWeather = list.map(
     ({
-      coord: {
-        lat,
-        lon,
-      },
+      coord: { lat, lon },
       weather: {
-        0: {
-          main: weather,
-          icon,
-        },
+        0: { main: weather, icon },
       },
       main: { temp: temperature },
       name: cityName,

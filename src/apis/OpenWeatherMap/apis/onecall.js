@@ -89,23 +89,19 @@ export function parseCurrentWeatherAndForecast(
   });
 
   const { daily } = data;
-  const forecastOfFiveDays = daily.slice(0, 5)
-    .map(
-      ({
-        dt: timestamp,
-        temp: { day: dayTemperature },
-        weather: {
-          0: {
-            main: dayWeather,
-            icon,
-          },
-        },
-      }) => ({
-        day: WEEK_DAYS[new Date(timestamp * 1000).getDay()],
-        temperature: Number.parseInt(dayTemperature, 10),
-        weather: dayWeather,
-        icon,
-      }),
-    );
+  const forecastOfFiveDays = daily.slice(0, 5).map(
+    ({
+      dt: timestamp,
+      temp: { day: dayTemperature },
+      weather: {
+        0: { main: dayWeather, icon },
+      },
+    }) => ({
+      day: WEEK_DAYS[new Date(timestamp * 1000).getDay()],
+      temperature: Number.parseInt(dayTemperature, 10),
+      weather: dayWeather,
+      icon,
+    }),
+  );
   setForecast(forecastOfFiveDays);
 }
