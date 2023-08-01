@@ -6,9 +6,7 @@ export default function SubSection({
 }) {
   return (
     <div className={sectionClass}>
-      <div
-        className={`text-2xl font-light tracking-widest mb-2 ${titleClass}`}
-      >
+      <div className={`text-2xl font-light tracking-widest mb-2 ${titleClass}`}>
         {title}
       </div>
       {children}

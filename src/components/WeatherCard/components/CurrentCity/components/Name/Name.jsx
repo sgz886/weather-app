@@ -1,6 +1,6 @@
-const Name = ({ children }) => {
+function Name({ children }) {
   return (
-    <div className="min-w-[200px] flex justify-center">
+    <div className='min-w-[200px] flex justify-center'>
       <div
         className="
       text-white text-3xl font-medium
@@ -11,5 +11,5 @@ const Name = ({ children }) => {
       </div>
     </div>
   );
-};
+}
 export default Name;

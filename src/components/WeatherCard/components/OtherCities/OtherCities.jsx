@@ -37,45 +37,41 @@ export default function OtherCities({ onClickCity }) {
   const [isLoading, setIsLoading] = useState(true);
   const callGroupWeather = async () => {
     const data = await groupCall('/group', {
-      id: CITIES.map(({ id }) => id).join()
+      id: CITIES.map(({ id }) => id).join(),
     });
     parseGroupWeather(data, setOtherCitiesWeather);
   };
 
   useEffect(() => {
     setIsLoading(true);
-    callGroupWeather()
-      .finally(() => setIsLoading(false));
+    callGroupWeather().finally(() => setIsLoading(false));
   }, []);
   return (
     <SubSection
-      sectionClass="w-[240px] flex flex-col
-        max-[800px]:h-[280px] max-[800px]:w-full max-[800px]:px-7 max-[800px]:pt-5"
-      title="Other Cites"
+      sectionClass='w-[240px] flex flex-col
+        max-[800px]:h-[280px] max-[800px]:w-full max-[800px]:px-7 max-[800px]:pt-5'
+      title='Other Cites'
     >
       {isLoading ? (
-        <div className="grow flex justify-center items-center">Loading</div>
+        <div className='grow flex justify-center items-center'>Loading</div>
       ) : (
-        <div className="flex flex-col justify-around">
-          {otherCitiesWeather.map(({
-            cityName: name,
-            lat,
-            lon,
-            temperature,
-            icon,
-            weather,
-          }) => (
-            <CityRow
-              key={name}
-              name={name}
-              lat={lat}
-              lon={lon}
-              temperature={temperature}
-              icon={icon}
-              weather={weather}
-              onClick={() => onClickCity({ name, lat, lon })}
-            />
-          ))}
+        <div className='flex flex-col justify-around'>
+          {otherCitiesWeather.map(
+            ({
+              cityName: name, lat, lon, temperature, icon, weather,
+            }) => (
+              <CityRow
+                key={name}
+                name={name}
+                lat={lat}
+                lon={lon}
+                temperature={temperature}
+                icon={icon}
+                weather={weather}
+                onClick={() => onClickCity({ name, lat, lon })}
+              />
+            ),
+          )}
         </div>
       )}
     </SubSection>

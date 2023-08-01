@@ -1,6 +1,6 @@
 export default function CityName({ children }) {
   return (
-    <div className="w-48 flex justify-center">
+    <div className='w-48 flex justify-center'>
       <h1
         className="
           text-3xl tracking-wider font-medium
