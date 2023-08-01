@@ -17,13 +17,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## 🥞 What techs are in this project?
 
-| Category           | Packages                                  |
-| ------------------ | ----------------------------------------- |
-| Library            | `react`                                   |
-| BootStrapper       | `create-react-app`                        |
-| Scripting Language | `javacript`                               |
-| Styling            | [`tailwindcss`](https://tailwindcss.com/) |
-| Code Control       | `eslint`                                  |
+| Category           | Packages                                     |
+| ------------------ | -------------------------------------------- |
+| Library            | `react`                                      |
+| tools              | `Webpack`, `Babel`                           |
+| Scripting Language | `javacript`                                  |
+| Styling            | [`tailwindcss`](https://tailwindcss.com/)    |
+| Code Control       | `eslint`, `husky`, `lint-staged`, `prettier` |
 
 ## 💻📱 Preview
 
