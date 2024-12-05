@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import CurrentCity from './components/CurrentCity';
 import OtherCities from './components/OtherCities';
 import Forecast from './components/Forecast';
-import onecall, {
-  parseCurrentWeatherAndForecast,
-} from '../../apis/OpenWeatherMap/apis/onecall';
+import weatherCall, { parseWeatherCall } from '../../apis/OpenWeatherMap/apis/weatherCall';
+import forecastCall, { parseForecastCall } from '../../apis/OpenWeatherMap/apis/forecastCall';
 import { CITIES } from './components/OtherCities/OtherCities';
 
 export default function WeatherCard() {
@@ -14,16 +13,22 @@ export default function WeatherCard() {
   const [isLoading, setIsLoading] = useState(true);
 
   async function callCurrentWeatherAndForecast() {
-    const data = await onecall('/onecall', {
+    const cityCoordinate = {
       lat: city.lat,
       lon: city.lon,
-    });
-    parseCurrentWeatherAndForecast(data, city.name, setCurrent, setForecast);
+    };
+    const [currentWeather, forecastWeather] = await Promise.all([
+      weatherCall(cityCoordinate),
+      forecastCall(cityCoordinate),
+    ]);
+    parseWeatherCall(currentWeather, setCurrent);
+    parseForecastCall(forecastWeather, setForecast);
   }
 
   useEffect(() => {
     setIsLoading(true);
-    callCurrentWeatherAndForecast().finally(() => setIsLoading(false));
+    callCurrentWeatherAndForecast()
+      .finally(() => setIsLoading(false));
   }, [city]);
 
   return (

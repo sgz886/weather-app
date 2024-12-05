@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import SubSection from '../../../SubSection';
 import CityRow from './components/CityRow';
-import groupCall, {
-  parseGroupWeather,
-} from '../../../../apis/OpenWeatherMap/apis/groupCall';
+import groupCall, { parseGroupCall } from '../../../../apis/OpenWeatherMap/apis/groupCall';
 
 export const CITIES = [
   {
@@ -36,10 +34,10 @@ export default function OtherCities({ onClickCity }) {
   const [otherCitiesWeather, setOtherCitiesWeather] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const callGroupWeather = async () => {
-    const data = await groupCall('/group', {
+    const data = await groupCall({
       id: CITIES.map(({ id }) => id).join(),
     });
-    parseGroupWeather(data, setOtherCitiesWeather);
+    parseGroupCall(data, setOtherCitiesWeather);
   };
 
   useEffect(() => {
