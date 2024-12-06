@@ -1,8 +1,8 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const config = {
-  // mode: 'development',
+module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -63,6 +63,7 @@ const config = {
     port: 3000,
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
@@ -71,5 +72,3 @@ const config = {
     extensions: ['.jsx', '.js', '.json'],
   },
 };
-
-module.exports = config;
