@@ -63,7 +63,9 @@ module.exports = {
     port: 3000,
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: process.env.NODE_ENV === 'production' ? '.env.production' : '.env',
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),

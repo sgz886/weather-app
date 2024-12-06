@@ -35,6 +35,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+      - name: Create env file
+        run: |
+          echo "REACT_APP_WEATHER_BASE_URL=${{ secrets.REACT_APP_WEATHER_BASE_URL }}" >> .env.production
+          echo "REACT_APP_WEATHER_UNITS=${{ secrets.REACT_APP_WEATHER_UNITS }}" >> .env.production
+          echo "REACT_APP_WEATHER_API_KEY=${{ secrets.REACT_APP_WEATHER_API_KEY }}" >> .env.production
       - run: npm ci
       - run: npm run build
       - name: Setup Pages
